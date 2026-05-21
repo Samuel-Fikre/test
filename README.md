@@ -1,66 +1,86 @@
-# inventory
+# Inventory Manager
 
-This project was created with [Better Fullstack](https://github.com/Marve10s/Better-Fullstack), a modern TypeScript stack that combines Next.js, Self, and more.
+A single-page CRUD inventory management app built with Next.js, Drizzle ORM, Neon PostgreSQL, and Cloudinary.
 
-## Features
 
-- **TypeScript** - For type safety and improved developer experience
-- **Next.js** - Full-stack React framework
-- **TailwindCSS** - CSS framework
-- **shadcn/ui** - UI components
-- **Drizzle** - TypeScript-first ORM
-- **PostgreSQL** - Database engine
-- **Oxlint** - Oxlint + Oxfmt (linting & formatting)
-- **Turborepo** - Optimized monorepo build system
+## Tech Stack
+
+- **Next.js** — Full-stack React framework
+- **TailwindCSS** — Styling
+- **shadcn/ui** — UI components (Dialog, AlertDialog, Table, Select)
+- **Drizzle ORM** — TypeScript-first ORM
+- **PostgreSQL** — Database (Neon serverless)
+- **Cloudinary** — Image hosting
+- **Motion** — Animations
+- **Turborepo** — Monorepo build system
 
 ## Getting Started
 
-First, install the dependencies:
+1. Install dependencies:
 
 ```bash
 bun install
 ```
 
-## Database Setup
+2. Copy the environment template and fill in your credentials:
 
-This project uses PostgreSQL with Drizzle ORM.
+```bash
+cp apps/web/.env.example apps/web/.env
+```
 
-1. Make sure you have a PostgreSQL database set up.
-2. Update your `apps/web/.env` file with your PostgreSQL connection details.
+Required variables:
 
-3. Apply the schema to your database:
+| Variable | Description |
+|---|---|
+| `DATABASE_URL` | Neon pooled connection string |
+| `DATABASE_URL_UNPOOLED` | Neon direct connection (for `drizzle-kit push`) |
+| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name |
+| `CLOUDINARY_API_KEY` | Cloudinary API key |
+| `CLOUDINARY_API_SECRET` | Cloudinary API secret |
+| `CORS_ORIGIN` | `http://localhost:3001` for local dev |
+
+3. Push the schema to your database:
 
 ```bash
 bun run db:push
 ```
 
-Then, run the development server:
+4. Start the dev server:
 
 ```bash
 bun run dev
 ```
 
-Open [http://localhost:3001](http://localhost:3001) in your browser to see the fullstack application.
-
-## Git Hooks and Formatting
-
-- Format and lint fix: `bun run check`
+Open [http://localhost:3001](http://localhost:3001) to use the app.
 
 ## Project Structure
 
 ```
 inventory/
 ├── apps/
-│   └── web/         # Fullstack application (Next.js)
+│   └── web/
+│       └── src/
+│           ├── app/
+│           │   ├── api/
+│           │   │   ├── items/         # GET (list), POST (create)
+│           │   │   └── items/[id]/    # PUT (update), DELETE
+│           │   ├── layout.tsx
+│           │   └── page.tsx           # Single-page CRUD UI
+│           └── components/
+│               ├── inventory/
+│               │   ├── items-table.tsx
+│               │   ├── item-form.tsx
+│               │   └── delete-dialog.tsx
+│               └── ui/                # shadcn + custom components
 ├── packages/
-│   ├── api/         # API layer / business logic
+│   ├── db/                            # Drizzle schema + client
+│   └── env/                           # Env validation (Zod)
 ```
 
-## Available Scripts
+## Scripts
 
-- `bun run dev`: Start all applications in development mode
-- `bun run build`: Build all applications
-- `bun run check-types`: Check TypeScript types across all apps
-- `bun run db:push`: Push schema changes to database
-- `bun run db:studio`: Open database studio UI
-- `bun run check`: Run Oxlint and Oxfmt
+- `bun run dev` — Start all apps in development mode
+- `bun run build` — Build all apps
+- `bun run check` — Run linter
+- `bun run db:push` — Push schema to database
+- `bun run db:studio` — Open Drizzle Studio
