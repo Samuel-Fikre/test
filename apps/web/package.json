@@ -9,10 +9,12 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
+    "@inventory/db": "workspace:*",
     "@inventory/env": "workspace:*",
     "@tanstack/react-form": "^1.32.0",
     "babel-plugin-react-compiler": "^1.0.0",
     "class-variance-authority": "^0.7.1",
+    "cloudinary": "^2.10.0",
     "clsx": "^2.1.1",
     "dotenv": "catalog:",
     "geist": "^1.7.0",
