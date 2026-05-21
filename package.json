@@ -1,0 +1,43 @@
+{
+  "name": "inventory",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ],
+    "catalog": {
+      "dotenv": "^17.4.2",
+      "zod": "^4.4.3",
+      "@types/node": "^25.6.2"
+    }
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "dev:native": "turbo -F native dev",
+    "dev:web": "turbo -F web dev",
+    "db:push": "turbo -F @inventory/db db:push",
+    "db:studio": "turbo -F @inventory/db db:studio",
+    "db:generate": "turbo -F @inventory/db db:generate",
+    "db:migrate": "turbo -F @inventory/db db:migrate",
+    "check": "oxlint && oxfmt --write"
+  },
+  "dependencies": {
+    "@inventory/env": "workspace:*",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@inventory/config": "workspace:*",
+    "@types/node": "catalog:",
+    "oxfmt": "^0.48.0",
+    "oxlint": "^1.63.0",
+    "turbo": "^2.9.12",
+    "typescript": "^6.0.3",
+    "vercel": "^53.3.2"
+  },
+  "packageManager": "bun@1.2.20"
+}

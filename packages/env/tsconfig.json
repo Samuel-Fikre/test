@@ -1,0 +1,3 @@
+{
+  "extends": "@inventory/config/tsconfig.base.json"
+}
