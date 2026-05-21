@@ -2,7 +2,6 @@
 
 A single-page CRUD inventory management app built with Next.js, Drizzle ORM, Neon PostgreSQL, and Cloudinary.
 
-
 ## Tech Stack
 
 - **Next.js** — Full-stack React framework
@@ -30,14 +29,14 @@ cp apps/web/.env.example apps/web/.env
 
 Required variables:
 
-| Variable | Description |
-|---|---|
-| `DATABASE_URL` | Neon pooled connection string |
+| Variable                | Description                                     |
+| ----------------------- | ----------------------------------------------- |
+| `DATABASE_URL`          | Neon pooled connection string                   |
 | `DATABASE_URL_UNPOOLED` | Neon direct connection (for `drizzle-kit push`) |
-| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name |
-| `CLOUDINARY_API_KEY` | Cloudinary API key |
-| `CLOUDINARY_API_SECRET` | Cloudinary API secret |
-| `CORS_ORIGIN` | `http://localhost:3001` for local dev |
+| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name                           |
+| `CLOUDINARY_API_KEY`    | Cloudinary API key                              |
+| `CLOUDINARY_API_SECRET` | Cloudinary API secret                           |
+| `CORS_ORIGIN`           | `http://localhost:3001` for local dev           |
 
 3. Push the schema to your database:
 

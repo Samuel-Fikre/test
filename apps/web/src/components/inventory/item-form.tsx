@@ -74,6 +74,7 @@ export function ItemForm({
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    mode: "onBlur",
     defaultValues: {
       name: item?.name ?? "",
       description: item?.description ?? "",
@@ -230,7 +231,7 @@ export function ItemForm({
                   <Input
                     id={field.name}
                     type="number"
-                    step="0.01"
+                    step="any"
                     value={field.value ?? ""}
                     onChange={(e) =>
                       field.onChange(e.target.value === "" ? undefined : Number(e.target.value))
